@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy  as np
+import matplotlib.pyplot as plt
+
+idea_df = pd.read_csv('IDEA.csv')
+
+idea_df= idea_df[['date', 'close']]             #taking only the required coloumns to calcculate the gain/return
+
+idea_df = idea_df.set_index(pd.DatetimeIndex(idea_df['date'], dayfirst=True))    #dayfirst=true gets the date into the indian style which is ddmmyyyy
+
+
+plt.figure(figsize=(12,5))                                    # the default figsize provided by the matplot is smaller
+plt.plot(idea_df.index, idea_df.close)                  # as the date is set as an index so took it
+plt.xlabel('Date')
+plt.ylabel('Close')
+plt.show()
+
+
