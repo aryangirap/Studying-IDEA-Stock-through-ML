@@ -15,4 +15,19 @@ plt.xlabel('Date')
 plt.ylabel('Close')
 plt.show()
 
+#for calculating  the daily returns we will calculate the percentage change of the close price of the stock on that particular day vs yesterday
+
+#use the pct_change() method of pandas
+gain = idea_df['close'].pct_change(periods=1)     # periods=1 tells that you have to take the previous value
+
+plt.figure(figsize=(12,5))
+plt.plot(idea_df.index, gain)
+plt.xlabel('Date')
+plt.ylabel('Gain')
+plt.show()
+
+
+#we will get the gain in the range of -1 to +1
+
+
 
