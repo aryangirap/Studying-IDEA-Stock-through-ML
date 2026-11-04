@@ -30,4 +30,18 @@ plt.show()
 #we will get the gain in the range of -1 to +1
 
 
+#For range of gain at a specific confidence interval :
+from scipy import stats
+
+#take the confidence interval from the user and calculate the range of gain
+#for normal distribution the location parameter is the mean
+#for normal distribution the scale parameter is the standard deviation
+
+conf= float(input("Enter the Confidence percent(in decimal):"))
+
+idea_df_ci = stats.norm.interval(conf, loc=idea_df.gain.mean(), scale=idea_df.gain.std())
+
+print("The range of  gain in the confidence interval is: ",np.round(idea_df_ci,4))
+
+
 
