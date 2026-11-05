@@ -18,3 +18,6 @@ interval()  has 3 parameters
 For the idea stock i got :
 Enter the Confidence percent(in decimal):0.95
 The range of  gain in the confidence interval is:  [-0.0721  0.0728]
+
+The standard deviation of the gain is :  0.036989
+The Mean of the gain is :  0.000351
