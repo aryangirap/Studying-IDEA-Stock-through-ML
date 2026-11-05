@@ -44,4 +44,11 @@ idea_df_ci = stats.norm.interval(conf, loc=idea_df.gain.mean(), scale=idea_df.ga
 print("The range of  gain in the confidence interval is: ",np.round(idea_df_ci,4))
 
 
+#For calculating the risk We use the standard deviation higher the standard deviation higher is the risk
+
+print("The standard deviation of the gain is : ", np.round(idea_df.gain.std(),6))
+
+print("The Mean of the gain is : ", np.round(idea_df.gain.mean(),6))
+
+
 
