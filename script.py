@@ -50,5 +50,30 @@ print("The standard deviation of the gain is : ", np.round(idea_df.gain.std(),6)
 
 print("The Mean of the gain is : ", np.round(idea_df.gain.mean(),6))
 
+# Now using the monte carlo simulation to simulate the close price of the IDEA stock of the next 5 years
+log_ret = np.log(idea_df['close'] / idea_df['close'].shift(1)).dropna()
+mu = log_ret.mean()
+sigma = log_ret.std()
+
+days = 252 * 5
+n_sims = 1000
+np.random.seed(42)
+
+shocks = np.random.normal(mu, sigma, size=(days, n_sims))
+paths = idea_df['close'].iloc[-1] * np.exp(np.cumsum(shocks, axis=0))
+
+future_dates = pd.bdate_range(idea_df.index[-1] + pd.Timedelta(days=1), periods=days)
+p5, p50, p95 = np.percentile(paths, [5, 50, 95], axis=1)
+
+plt.figure(figsize=(12, 5))
+plt.plot(idea_df.index, idea_df['close'], label='Historical Close')
+plt.plot(future_dates, paths[:, :30], color='grey', alpha=0.15)
+plt.plot(future_dates, p50, color='red', label='Median path')
+plt.fill_between(future_dates, p5, p95, color='orange', alpha=0.3, label='5%-95% range')
+plt.xlabel('Date')
+plt.ylabel('Close')
+plt.legend()
+plt.show()
+
 
 
